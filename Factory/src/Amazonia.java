@@ -1,7 +1,7 @@
-public class Amazonia extends Regiao {
+public class Amazonia implements Regiao {
 
     @Override
-    protected Inimigo criarInimigo() {
+    public Inimigo criarInimigo() {
         Inimigo inimigo = new AnimalMutante("Jararaca-do-norte mutante");
         inimigo.aparecer();
         return inimigo;

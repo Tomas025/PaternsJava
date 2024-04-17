@@ -1,7 +1,7 @@
-public class Sertao extends Regiao{
+public class Sertao implements Regiao{
 
     @Override
-    protected Inimigo criarInimigo() {
+    public Inimigo criarInimigo() {
         Inimigo inimigo = new Cangaceiro("Quinta-feira");
         inimigo.aparecer();
         return inimigo;

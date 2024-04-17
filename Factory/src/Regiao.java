@@ -1,4 +1,4 @@
-public abstract class Regiao{
+public interface Regiao{
 
-    protected abstract Inimigo criarInimigo();    
+    abstract Inimigo criarInimigo();    
 }

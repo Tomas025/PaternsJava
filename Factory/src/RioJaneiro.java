@@ -1,7 +1,7 @@
-public class RioJaneiro extends Regiao{
+public class RioJaneiro implements Regiao{
 
     @Override
-    protected Inimigo criarInimigo() {
+    public Inimigo criarInimigo() {
         Inimigo inimigo = new Criminoso("Zé Pequeno");
         inimigo.aparecer();
         return inimigo;
