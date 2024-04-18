@@ -8,6 +8,11 @@ import java.util.List;
 public class WebSearchModel {
     private final File sourceFile;
     private final List<QueryObserver> observers = new ArrayList<>();
+    private final List<Strategy> filters = new ArrayList<>();
+    
+    public interface Strategy {
+        boolean interessado(String query);
+    }
 
     public interface QueryObserver {
         void onQuery(String query);
@@ -24,20 +29,32 @@ public class WebSearchModel {
                 if (line == null) {
                     break;
                 }
-                notifyAllObservers(line);
+                for(Strategy filter : filters) {
+                    if (filter.interessado(line)) {
+                        notifyAllObservers(line);
+                        break;
+                    }
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void addQueryObserver(QueryObserver queryObserver) {
+    public void addQueryObserver(QueryObserver queryObserver, Strategy filter) {
         observers.add(queryObserver);
+        filters.add(filter);
     }
 
     private void notifyAllObservers(String line) {
         for (QueryObserver obs : observers) {
-            obs.onQuery(line);
+            if (filters.get(0).interessado(line)) {
+                obs.onQuery("So long.... " + line);
+                break;
+            } else if (filters.get(1).interessado(line)) {
+                obs.onQuery("Oh Yes! " + line);
+                break;
+            }
         }
     }
 }

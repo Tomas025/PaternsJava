@@ -1,3 +1,5 @@
+import javax.management.Query;
+
 /**
  * Watches the search queries
  */
@@ -7,11 +9,15 @@ public class Snooper {
     public Snooper(WebSearchModel model) {
         this.model = model;
 
-        model.addQueryObserver( new WebSearchModel.QueryObserver() {
+        WebSearchModel.QueryObserver observer = new WebSearchModel.QueryObserver() {
             @Override
             public void onQuery(String query) {
-                System.out.println("Query: " + query);
+                System.out.println(query);
             }
-        });
+        };
+
+        this.model.addQueryObserver( observer, new FilterLenght());
+        
+        this.model.addQueryObserver( observer, new FilterFriend());
     }
 }
