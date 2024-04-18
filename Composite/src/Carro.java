@@ -29,7 +29,7 @@ public class Carro extends ParteDoCarro{
 
     @Override
     void print(ParteDoCarro parte, double pesoParcial) {
-        System.out.println("\nO peso da " +  this.nome + "é: " + this.peso + ". Total parcial: " + pesoParcial);
+        System.out.println("\nO peso da " +  this.nome + " é: " + this.peso + ". Total parcial: " + pesoParcial);
     }
 
 }
